@@ -5,7 +5,7 @@ from your_parsing_script import read_journal, parse_journal_entries
 app = Flask(__name__)
 
 # Read and parse the journal entries
-file_path = '/Users/benberkman/Desktop/cb/output.txt'  # Replace with your file path
+file_path = 'output.txt'  # Replace with your file path
 journal_content = read_journal(file_path)
 parsed_entries = parse_journal_entries(journal_content)
 
