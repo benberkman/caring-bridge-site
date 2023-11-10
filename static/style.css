@@ -1,0 +1,60 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+h1, h2 {
+    color: #663399; /* A shade of purple */
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+a {
+    color: #663399;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+/* Custom styling for ginkgo leaves, possibly as a background image */
+.header {
+    background: url('ginkgobanner-jpeg.jpg') no-repeat center center/cover;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/* Style for sections of the entry page */
+.entry-section {
+    margin-bottom: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+/* Comment section styling */
+.comments {
+    background: rgba(235, 233, 249, 0.5); /* Light purple background for comments */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* ... additional styles as needed ... */
