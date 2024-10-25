@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 import json
 from datetime import datetime, date
 import re
+from network_graph import NetworkGraphBuilder
 
 app = Flask(__name__)
 
@@ -61,6 +62,14 @@ def entry(entry_id):
     if 0 <= entry_id < len(entries):
         return render_template('entry.html', entry=entries[entry_id])
     return "Entry not found", 404
+
+@app.route('/network')
+def network():
+    entries = load_entries()
+    graph_builder = NetworkGraphBuilder()
+    relationships = graph_builder.extract_relationships(entries)
+    network_data = graph_builder.create_network_data(relationships)
+    return render_template('network.html', network_data=network_data)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)  # or any other available port

@@ -113,7 +113,7 @@
     <nav class="menu-bar">
         <ul>
             <li><a href="{{ url_for('index') }}">Home</a></li>
-            {% block extra_nav %}{% endblock %}
+            <li><a href="{{ url_for('network') }}">Relationship Network</a></li>
         </ul>
     </nav>
     {% block content %}{% endblock %}

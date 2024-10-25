@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+    <!-- Make the container taller -->
+    <div id="network-container" style="height: 900px; width: 100%;"></div>
+</div>
+
+<script src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+<script>
+    const container = document.getElementById('network-container');
+    const data = {
+        nodes: new vis.DataSet({{ network_data.nodes | tojson | safe }}),
+        edges: new vis.DataSet({{ network_data.edges | tojson | safe }})
+    };
+    
+    const options = {
+        nodes: {
+            shape: 'dot',
+            scaling: {
+                min: 20,
+                max: 50
+            },
+            font: {
+                size: 16,
+                face: 'Tahoma'
+            }
+        },
+        edges: {
+            width: 2,
+            color: {inherit: 'both'},
+            smooth: {
+                type: 'continuous'
+            }
+        },
+        physics: {
+            stabilization: false,
+            barnesHut: {
+                gravitationalConstant: -80000,
+                springConstant: 0.001,
+                springLength: 250
+            }
+        },
+        groups: {
+            author: {
+                color: {
+                    background: '#6a0dad',
+                    border: '#4a0a8d',
+                    highlight: {
+                        background: '#8a2dad',
+                        border: '#6a0dad'
+                    }
+                },
+                size: 40
+            },
+            person: {
+                color: {
+                    background: '#a2c04b',
+                    border: '#82a02b',
+                    highlight: {
+                        background: '#c2e06b',
+                        border: '#a2c04b'
+                    }
+                },
+                size: 30
+            }
+        }
+    };
+    
+    const network = new vis.Network(container, data, options);
+</script>
+{% endblock %}
