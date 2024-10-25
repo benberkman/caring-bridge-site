@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}A Narrow Bridge{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="sidebar left-sidebar">
+        <h2>Top Entries by Emotion</h2>
+        <form action="{{ url_for('index') }}" method="get">
+            <select name="emotion" onchange="this.form.submit()">
+                {% for emotion in emotions %}
+                <option value="{{ emotion }}" {% if emotion == selected_emotion %}selected{% endif %}>
+                    {{ emotion.capitalize() }}
+                </option>
+                {% endfor %}
+            </select>
+        </form>
+        <ul>
+            {% for entry in top_entries %}
+            <li>
+                <a href="{{ url_for('entry', entry_id=entries.index(entry)) }}">
+                    {{ entry.date }} - {{ entry.title }} ({{ selected_emotion.capitalize() }}: {{ entry[selected_emotion] }})
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="main-content">
+        <ul>
+        {% for entry in entries %}
+            <li>
+                <a href="{{ url_for('entry', entry_id=loop.index0) }}">
+                    {{ entry.date }} - {{ entry.title }} ({{ entry.label }})
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="sidebar right-sidebar">
+        <h2>On This Day</h2>
+        {% if on_this_day_entries %}
+            <ul>
+            {% for entry in on_this_day_entries %}
+                <li>
+                    <a href="{{ url_for('entry', entry_id=entries.index(entry)) }}">
+                        {{ entry.date }} - {{ entry.title }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No entries on this day in previous years.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

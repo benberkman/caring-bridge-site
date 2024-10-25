@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}A Narrow Bridge{% endblock %}</title>
+    <style>
+        body { 
+            font-family: 'Georgia', serif; 
+            line-height: 1.6; 
+            margin: 0; 
+            padding: 20px; 
+            background-color: #f0e6ff; 
+            color: #4b0082; 
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .sidebar {
+            width: 300px;
+            padding: 20px;
+            background-color: #f0e6ff;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .main-content {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        h1, h2 { 
+            color: #6a0dad; 
+            border-bottom: 2px solid #a2c04b; 
+            padding-bottom: 5px; 
+        }
+        .entry { 
+            margin-bottom: 20px; 
+            background-color: #fafafa; 
+            padding: 15px; 
+            border-radius: 5px; 
+            border-left: 5px solid #a2c04b; 
+        }
+        .comment { 
+            margin-left: 20px; 
+            border-left: 2px solid #a2c04b; 
+            padding-left: 10px; 
+            font-style: italic; 
+        }
+        a { 
+            color: #6a0dad; 
+            text-decoration: none; 
+        }
+        a:hover { 
+            text-decoration: underline; 
+        }
+        select {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        .chart-container {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 20px;
+        }
+        #graph-container {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        #info-panel {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .menu-bar {
+            background-color: #6a0dad;
+            padding: 10px 0;
+            margin-bottom: 20px;
+        }
+        .menu-bar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        .menu-bar li {
+            display: inline;
+            margin: 0 15px;
+        }
+        .menu-bar a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .menu-bar a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>A Narrow Bridge</h1>
+    </div>
+    <nav class="menu-bar">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            {% block extra_nav %}{% endblock %}
+        </ul>
+    </nav>
+    {% block content %}{% endblock %}
+    {% block scripts %}{% endblock %}
+</body>
+</html>

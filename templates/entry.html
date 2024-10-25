@@ -1,20 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>{{ entry.title }}</title>
-</head>
-<body>
-    <div class="header">
-        <h1>{{ entry.title }}</h1>
+{% extends "base.html" %}
+
+{% block title %}{{ entry.title }}{% endblock %}
+
+{% block content %}
+    <h1>{{ entry.title }}</h1>
+    <p><strong>Date:</strong> {{ entry.date }}</p>
+    <p><strong>Author:</strong> {{ entry.author }}</p>
+    <div class="entry">
+        {{ entry.entry | nl2br | safe }}
     </div>
-    <div class="container">
-        <p><strong>Author:</strong> {{ entry.author }}</p>
-        <p><strong>Date:</strong> {{ entry.date }}</p>
-        <div>{{ entry.entry | safe }}</div>
-        <h2>Comments</h2>
-        <div>{{ entry.comments | safe }}</div>
-    </div>
-</body>
-</html>
+    <h2>Comments</h2>
+    {% if entry.comments %}
+        {% for comment in entry.comments %}
+            <div class="comment">
+                <p>— {{ comment | nl2br | safe }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No comments yet.</p>
+    {% endif %}
+    <p><a href="{{ url_for('index') }}">Back to Index</a></p>
+{% endblock %}
